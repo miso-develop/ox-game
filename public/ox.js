@@ -61,7 +61,7 @@ const vm = new Vue({
 			if (snapshot.val()) {this.createRoom(); return}
 			
 			//timestamp
-			this.sync.timestamp = new Date()
+			this.sync.timestamp = moment(new Date).format("YYYY/MM/DD HH:mm:ss")
 			//DB更新
 			this.ref.set(this.sync)
 			//DBイベント定義
@@ -98,8 +98,6 @@ const vm = new Vue({
 			//turn値をランダム取得
 			this.sync.turn = Math.round(Math.random())
 			
-			//timestamp
-			this.sync.timestamp = new Date()
 			//DB更新
 			this.ref.set(this.sync)
 			//DBイベント定義
@@ -129,8 +127,6 @@ const vm = new Vue({
 			//ターン交代
 			this.sync.turn = 1 - this.sync.turn
 			
-			//timestamp
-			this.sync.timestamp = new Date()
 			//DB更新
 			this.ref.set(this.sync)
 			
@@ -199,8 +195,6 @@ const vm = new Vue({
 				if (vm.mark == 0) {
 					//初期化
 					vm.initGame()
-					//timestamp
-					vm.sync.timestamp = new Date()
 					//DBも初期化
 					vm.ref.set(vm.sync)
 				}
@@ -215,5 +209,6 @@ const vm = new Vue({
 			if (val == 0) return "O"
 			if (val == 1) return "X"
 		},
+		
 	},
 })
